@@ -472,6 +472,7 @@ section,
   text-align: center;
   padding-bottom: 60px;
   position: relative;
+  width: 60%;
 }
 
 .section-title h2 {
@@ -508,9 +509,6 @@ section,
   margin: auto;
 }
 
-.section-title p {
-  margin-bottom: 0;
-}
 
 /*--------------------------------------------------------------
 # Hero Section
@@ -700,6 +698,7 @@ section,
 /*--------------------------------------------------------------
 # Resume Section
 --------------------------------------------------------------*/
+
 .resume .resume-title {
   color: var(--heading-color);
   font-size: 26px;
