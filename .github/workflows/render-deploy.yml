@@ -1,0 +1,20 @@
+name: Deploy to Render
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to watch for changes
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Trigger Render Deploy
+      env:
+        RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+      run: |
+        curl -X POST "$RENDER_DEPLOY_HOOK"
