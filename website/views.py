@@ -5,7 +5,6 @@ from django.contrib import messages
 # Create your views here.
 
 
-
 def contact_view(request):
     if request.method == 'POST':
         # Extract data from the form
@@ -18,14 +17,17 @@ def contact_view(request):
         contact = Contact(name=name, email=email, subject=subject, message=message)
         contact.save()
 
+        # Print to console (for debugging purposes)
         print(name, email, subject, message)
 
         # Success message
         messages.success(request, "Your message has been sent. Thank you!")
-        
 
-        # Redirect to the same page to avoid form resubmission
-        return render(request, 'landing.html')
+        # Redirect to the same page or another page
+        return redirect('contact')  # Replace 'contact' with the name of your URL pattern for the contact form
+
+    # For GET requests, render the contact form
+    return render(request, 'landing.html')
 
 
 def landing(request):
