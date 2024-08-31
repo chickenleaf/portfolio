@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from website.models import Contact  
 from django.contrib import messages
+from django.http import FileResponse, Http404
+import os
+from django.conf import settings
+from .models import DownloadLog
 
 # Create your views here.
 
@@ -28,6 +32,27 @@ def contact_view(request):
 
     # For GET requests, render the contact form
     return render(request, 'landing.html')
+
+
+def download_resume(request):
+    
+    file_path = settings.RESUME_FILE_PATH
+    file_name = 'resume.pdf'
+
+    if not os.path.exists(file_path):
+        raise Http404("Resume file not found.")
+    
+    try:
+        # Create a FileResponse without Content-Disposition
+        response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+        
+        # Log the download action
+        ip_address = request.META.get('REMOTE_ADDR')
+        DownloadLog.objects.create(file_name=file_name, ip_address=ip_address)
+        
+        return response
+    except Exception:
+        raise Http404("Error accessing the resume file.")
 
 
 def landing(request):

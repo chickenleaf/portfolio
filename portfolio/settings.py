@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+k=t26doc^55mr@_m_nn(r!9_#xqg+b4p+m!66!#0=i=itc=ig'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['chickenleaf.onrender.com', 'localhost', '127.0.0.1']
 
@@ -129,3 +129,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Enable GZip compression and file manifesting
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Add the resume file path
+RESUME_FILE_PATH = os.path.join(BASE_DIR, 'website/static/resume/resume.pdf')

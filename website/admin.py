@@ -1,5 +1,6 @@
 from django.contrib import admin
 from website.models import Contact
+from .models import DownloadLog
 
 class ContactAdmin(admin.ModelAdmin):
     # Display 'created_at' in the list view
@@ -17,3 +18,12 @@ class ContactAdmin(admin.ModelAdmin):
 
 # Register the customized admin class
 admin.site.register(Contact, ContactAdmin)
+
+class DownloadLogAdmin(admin.ModelAdmin):
+    list_display = ('timestamp', 'file_name', 'ip_address')
+    list_filter = ('timestamp',)
+    search_fields = ('file_name',)
+
+# Register the download log class
+admin.site.register(DownloadLog, DownloadLogAdmin)
+
