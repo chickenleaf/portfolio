@@ -8,4 +8,4 @@ services:
       - 8000:8000
     image: django_portfolio_image:django
     container_name: django_portfolio_container
-    command: gunicorn portfolio.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn portfolio.wsgi:application --bind 0.0.0.0:8000 --forwarded-allow-ips='*'
