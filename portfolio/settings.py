@@ -136,5 +136,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 RESUME_FILE_PATH = os.path.join(BASE_DIR, 'website/static/resume/resume.pdf')
 
 #This tells Django to trust the X-Forwarded-Proto header for determining whether the request is secure (using HTTPS).
+USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
