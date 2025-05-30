@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-+k=t26doc^55mr@_m_nn(r!9_#xqg+b4p+m!66!#0=i=itc=ig'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['chickenleaf.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['chickenleaf.onrender.com', 'localhost', '127.0.0.1', '0.0.0.0']
 
 
 # Application definition

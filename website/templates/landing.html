@@ -62,13 +62,13 @@
       <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center">
           <div class="col-lg-9">
-            <h2>Ashwini <span><a href="{% url 'download_resume' %}" class="btn btn-outline-success btn-sm" target="_blank">Download Resume</a></span> </h2> 
-            <p><span class="typed" data-typed-items="Software Engineer, ML/AI Developer, Data Analyst, Web Developer">Designer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+            <h2>Ashwini <span><a href="{% url 'download_resume' %}" class="btn btn-outline-success btn-sm" target="_blank">Download Resume</a></span> </h2>
+            <p><span class="typed" data-typed-items="Software Engineer, ML/AI Engineer, Data Analyst, Backend Developer, Low-level Systems Engineer"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
             <div class="social-links">
               <a href="https://github.com/chickenleaf"><i class="bi bi-github"></i></a>
               <a href="https://www.linkedin.com/in/ashwini-lb/"><i class="bi bi-linkedin"></i></a>
               <a href="https://leetcode.com/u/chickenleaf/"><i class="bi bi-file-earmark-code-fill"></i></a>
-              <a href="https://stackoverflow.com/users/11910288/l-ashwini-balachandran"><i class="bi bi-stack-overflow"></i></a>           
+              <a href="https://chickenleaf.wordpress.com/"><i class="bi bi-pen-fill"></i></a>
             </div>
           </div>
         </div>
@@ -257,18 +257,31 @@
           <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
             <h3 class="resume-title">Professional Experience</h3>
             <div class="resume-item">
+              <h4>SDE Intern (Rust, Python)</h4>
+              <h5>Dec 2024 - Mar 2025</h5>
+              <p><em>Servo Project, The Linux Foundation</em></p><ul>
+                <li>
+                  Built a fully integrated, cross-platform dialog system in Servo with complete ownership of state, event flow, egui-based rendering, and engine hooks—backed by Serde-serialized IPC and Embedder API changes to isolate dialog behavior per webview.
+                </li>
+                <li>
+                  Implemented DOMRectList and refactored getClientRects() to W3C standards with safe GC tracing and precise layout handling.
+                </li>
+                <li>
+                  Rewrote 2.6k+ lines for explicit CanGc handling, improving GC safety and clarity. Resolved several memory/concurrency bugs, and ensured FFI safety with smart wrappers.
+                </li>
+              </ul>
+            </div><!-- Edn Resume Item -->
+
+            <div class="resume-item">
               <h4>LLM Engineer Intern</h4>
               <h5>Feb 2024 - July 2024</h5>
               <p><em>Sekurenet Ltd., England, UK</em></p><ul>
-                <li>Reduced query processing time by 15% using Redis caching and FAISS while building Q&ampA agents and RAG
-                  bots with open-source LLMs (Mistral, Mixtral, LiteLLM, Llama), Qdrant, sentence transformers, and Hugging Face NLP libraries.
-                  </li>
-                <li>Built &amp integrated AI assistants for email and calendar tools using APIs and python libraries, improving user productivity by 10% with Phidata, VapiAI, LangChain, OpenAI, Ollama, and Groq Client.
-                  </li>
-                <li>Developed ClickUp RESTful API tools and PythonREPL script, enhancing testing efficiency for the team
-                  </li>
+                <li>Built fast, scalable Q&A and RAG agents with Redis, FAISS, Qdrant, Hugging Face, and open-source LLMs (Mistral, Mixtral, Llama); cut query latency by 15%.
+                </li>
+                <li>Engineered AI assistants for email, calendar, and ClickUp using LangChain, Phidata, VapiAI, OpenAI, Groq, and PythonREPL—boosted user productivity by 10% and streamlined team testing workflows.
+                </li>
                 <li>Explored self-operating computers with LLMs, YOLO, LLaVA, Moondream, SAM, and PyAutoGUI.
-                  </li>
+                </li>
               </ul>
             </div><!-- Edn Resume Item -->
 
@@ -277,20 +290,12 @@
               <h5>Jan 2023 – July 2023</h5>
               <p><em>ThirdOrigin LLC, North Carolina, USA</em></p>
               <ul>
-                <li>Reduced processing time by 85.7% by developing core asynchronous function that triggers to further filter and
-                  load timezone-based MongoDB data onto the application server.
-                  </li>
-                <li>Cut data loading time from 14 minutes to under 2 minutes using asynchronous programming, Celery with
-                  Redis, and multithreading in batch sizes of 10,000+ optimized via CPU time and memory profiling.
-                  </li>
-                <li>Developed secure CRUD operations for RDBMS (MySQL, PostgreSQL) and RESTful APIs for NoSQL
-                  time-series databases (QuestDB, InfluxDB), using Pydantic &amp ORM to prevent SQL injection and reduce
-                  input errors by 40%.
-                  </li>
-                <li>• Optimized libraries using profiling, batch processing, data structures, and rigorous testing, significantly boosting data handling and system performance by atleast 20%.
-                  </li>
-                <li>Utilized Sphinx, Jira/Atlassian, Amazon Workspace, Apache Guacamole, Docker, Linux CLI
-                  </li>
+                <li>Cut data load time by 80% using async programming, Celery with Redis, and multithreading—optimized 10K+ record batches via CPU/memory profiling.
+                </li>
+                <li>Built secure, high-performance CRUD and REST APIs (FastAPI) for SQL (MySQL, PostgreSQL) and NoSQL (QuestDB, InfluxDB), cutting input errors by 40% with Pydantic and ORM.
+                </li>
+                <li>Boosted system performance 20%+ by profiling, optimizing libraries, and refining data structures; used Docker, Sphinx, Jira, Linux CLI, and Amazon Workspace for ops.
+                </li>
               </ul>
             </div><!-- Edn Resume Item -->
 
@@ -634,7 +639,7 @@
         <a href="https://github.com/chickenleaf"><i class="bi bi-github"></i></a>
         <a href="https://www.linkedin.com/in/ashwini-lb/"><i class="bi bi-linkedin"></i></a>
         <a href="https://leetcode.com/u/chickenleaf/"><i class="bi bi-file-earmark-code-fill"></i></a>
-        <a href="https://stackoverflow.com/users/11910288/l-ashwini-balachandran"><i class="bi bi-stack-overflow"></i></a> 
+        <a href="https://chickenleaf.wordpress.com/"><i class="bi bi-pen-fill"></i></a>
       </div>
       <div class="container">
         <div class="copyright">
