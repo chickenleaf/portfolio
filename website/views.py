@@ -60,7 +60,7 @@ def download_resume(request):
 def landing(request):
 
     education_entries = Education.objects.all().order_by('order') # Assuming 'order' field in Education model
-    work_experiences = WorkExperience.objects.all().order_by('-start_date', 'order') # Order by most recent start date, then custom order
+    work_experiences = WorkExperience.objects.all().order_by('order') # Order by most recent start date, then custom order
     projects = Project.objects.all().order_by('order') # Assuming 'order' field in Project model
     achievements = Achievement.objects.all().order_by('order')
 
