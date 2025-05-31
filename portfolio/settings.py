@@ -135,6 +135,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Add the resume file path
 RESUME_FILE_PATH = os.path.join(BASE_DIR, 'website/static/resume/resume.pdf')
 
+# ----------------------------------------------------------------------
+# NEW: Media Files Settings (for user-uploaded content, like project images)
+# ----------------------------------------------------------------------
+MEDIA_URL = '/media/' # The URL prefix for accessing uploaded files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # The physical path where uploaded files will be stored
+# ----------------------------------------------------------------------
+
 #This tells Django to trust the X-Forwarded-Proto header for determining whether the request is secure (using HTTPS).
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

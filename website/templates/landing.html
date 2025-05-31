@@ -93,9 +93,9 @@
             <img src="{% static 'img/profile-img.jpg' %}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-5 content">
-            <h2>Software Engineer &amp; ML/AI Developer.</h2>
+            <h2>Software Engineer</h2>
             <p class="fst-italic py-3">
-              As a passionate software developer and ML/AI enthusiast, I thrive on creating innovative solutions that enhance user experiences and drive efficiency. With a strong foundation in computer science and management, I blend technical expertise with strategic insights to deliver impactful projects.
+              Hello, I’m a First Division JNU CSE grad with 3 internships. I am experienced in Python, Rust, , C++, Databases, backend dev, and systems programming skills. I get pretty excited about people and software; and love collaborating and working within teams.
             </p>
             <div class="row">
               <div class="col-lg-8">
@@ -142,21 +142,21 @@
           <div class="col-lg-5">
 
             <div class="progress">
-              <span class="skill"><span>C/Python Programming</span> <i class="val">90%</i></span>
+              <span class="skill"><span>C++, Python, Rust</span> <i class="val">90%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div><!-- End Skills Item -->
 
             <div class="progress">
-              <span class="skill"><span>Django</span> <i class="val">90%</i></span>
+              <span class="skill"><span>Django, FastAPI</span> <i class="val">90%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div><!-- End Skills Item -->
 
             <div class="progress">
-              <span class="skill"><span>LLM &amp Computer Vision</span> <i class="val">80%</i></span>
+              <span class="skill"><span>ExpressJS, NodeJS</span> <i class="val">70%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -174,14 +174,14 @@
             </div><!-- End Skills Item -->
 
             <div class="progress">
-              <span class="skill"><span>Machine Learning</span> <i class="val">90%</i></span>
+              <span class="skill"><span>Machine Learning, LLM</span> <i class="val">90%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div><!-- End Skills Item -->
 
             <div class="progress">
-              <span class="skill"><span></span>Docker &amp AWS<i class="val">90%</i></span>
+              <span class="skill"><span></span>GitHub, CI/CD, Docker, Kubernetes<i class="val">90%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -201,7 +201,6 @@
       <!-- Section Title -->
       <div class="container section-title " data-aos="fade-up">
         <h2>Resume</h2>
-        <p >Innovative Computer Science professional with 1 year of experience in Python, ML/AI, and web technologies. Leveraging a management degree, I create reliable cross-platform solutions with strong coding skills and expertise in cross-functional collaboration, version control, and agile development.</p>
       </div><!-- End Section Title -->
 
       <div class="container">
@@ -221,83 +220,55 @@
               </ul>
             </div><!-- Edn Resume Item -->
 
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Master of Management</h4>
-              <h5>2019 – 2024</h5>
-              <p><em>School Of Engineering, Jawaharlal Nehru University, New Delhi, India</em></p>
-              <ul>
-                <strong>Subjects:</strong>
-                <li>Principles of Management and Organizational Behaviour, Production and Operations Management, Legal Aspects of Business.
-                </li>
-                <li>Quantitative Methods, Data Analysis, Research Methods for Management.
-                </li>
-                <li>Dissertation on Stock Splits in FMCG Sector.
-                </li>
-              </ul>
-            </div><!-- Edn Resume Item -->
 
-            <div class="resume-item">
-              <h4>Bachelor of Technology (Computer Sciences)</h4>
-              <h5>2019 – 2024</h5>
-              <p><em>School Of Engineering, Jawaharlal Nehru University, New Delhi, India</em></p>
+            <h3 class="resume-title">Education</h3>
+            {# Loop through education entries fetched from the database #}
+            {% for education in education_entries %}
+            <div class="resume-item pb-0">
+              <h4>{{ education.degree }}</h4>
+              {% if education.major %}
+              <p><em>{{ education.major }}</em></p>
+              {% endif %}
+              <h5>{{ education.start_year }} – {{ education.end_year }}</h5>
+              <p><em>{{ education.university }}, {{ education.location }}</em></p>
               <ul>
-                <strong>Subjects:</strong>
-                <li>C Programming, Data Structures, Computer Architecture, Operating Systems, OOPs.
-                </li>
-                <li>DBMS, Computer Networks, Cyber Security, Project on NS-3.
-                </li>
-                <li>Machine Learning, Digital Image Processing, Project on Compiler Design.
-                </li>
+                {# Use 'safe' filter to render HTML (like <li> tags) stored in the description field #}
+                {{ education.description | safe }}
               </ul>
-            </div><!-- Edn Resume Item -->
+            </div>{% empty %}
+            <p>No education entries found.</p>
+            {% endfor %}
+
+            {# Achievements Section #}
+            <h3 class="resume-title">Achievements</h3>
+            {# Since we're assuming you'll have only one achievement block with all points #}
+            {# or multiple blocks ordered, we'll loop through them. #}
+            {% for achievement in achievements %}
+            <div class="resume-item pb-0">
+                {# The 'content' field holds all your HTML for the points #}
+                {{ achievement.content | safe }}
+            </div>{% empty %}
+            <p>No achievements found.</p>
+            {% endfor %}
+            {# END Achievements Section #}
 
           </div>
 
           <div class="col-lg-5" data-aos="fade-up" data-aos-delay="200">
             <h3 class="resume-title">Professional Experience</h3>
+            {# Loop through work experience entries fetched from the database #}
+            {% for experience in work_experiences %}
             <div class="resume-item">
-              <h4>SDE Intern (Rust, Python)</h4>
-              <h5>Dec 2024 - Mar 2025</h5>
-              <p><em>Servo Project, The Linux Foundation</em></p><ul>
-                <li>
-                  Built a fully integrated, cross-platform dialog system in Servo with complete ownership of state, event flow, egui-based rendering, and engine hooks—backed by Serde-serialized IPC and Embedder API changes to isolate dialog behavior per webview.
-                </li>
-                <li>
-                  Implemented DOMRectList and refactored getClientRects() to W3C standards with safe GC tracing and precise layout handling.
-                </li>
-                <li>
-                  Rewrote 2.6k+ lines for explicit CanGc handling, improving GC safety and clarity. Resolved several memory/concurrency bugs, and ensured FFI safety with smart wrappers.
-                </li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>LLM Engineer Intern</h4>
-              <h5>Feb 2024 - July 2024</h5>
-              <p><em>Sekurenet Ltd., England, UK</em></p><ul>
-                <li>Built fast, scalable Q&A and RAG agents with Redis, FAISS, Qdrant, Hugging Face, and open-source LLMs (Mistral, Mixtral, Llama); cut query latency by 15%.
-                </li>
-                <li>Engineered AI assistants for email, calendar, and ClickUp using LangChain, Phidata, VapiAI, OpenAI, Groq, and PythonREPL—boosted user productivity by 10% and streamlined team testing workflows.
-                </li>
-                <li>Explored self-operating computers with LLMs, YOLO, LLaVA, Moondream, SAM, and PyAutoGUI.
-                </li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>SDE Intern (Python)</h4>
-              <h5>Jan 2023 – July 2023</h5>
-              <p><em>ThirdOrigin LLC, North Carolina, USA</em></p>
+              <h4>{{ experience.job_title }}</h4>
+              <h5>{{ experience.start_date }} - {% if experience.end_date %}{{ experience.end_date }}{% else %}Present{% endif %}</h5>
+              <p><em>{{ experience.company }}, {{ experience.location }}</em></p>
               <ul>
-                <li>Cut data load time by 80% using async programming, Celery with Redis, and multithreading—optimized 10K+ record batches via CPU/memory profiling.
-                </li>
-                <li>Built secure, high-performance CRUD and REST APIs (FastAPI) for SQL (MySQL, PostgreSQL) and NoSQL (QuestDB, InfluxDB), cutting input errors by 40% with Pydantic and ORM.
-                </li>
-                <li>Boosted system performance 20%+ by profiling, optimizing libraries, and refining data structures; used Docker, Sphinx, Jira, Linux CLI, and Amazon Workspace for ops.
-                </li>
+                {# Use 'safe' filter to render HTML (like <li> tags) stored in the description field #}
+                {{ experience.description | safe }}
               </ul>
-            </div><!-- Edn Resume Item -->
+            </div>{% empty %}
+            <p>No work experience entries found.</p>
+            {% endfor %}
 
           </div>
 
@@ -329,105 +300,28 @@
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="{% static 'img/masonry-portfolio/native_flow.jpg' %}" class="img-fluid" alt="">
+            {# Loop through project entries fetched from the database #}
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ project.category|lower|slugify }}">
+              {# Use project.image.url for images uploaded via the admin #}
+              <img src="{{ project.image.url }}" class="img-fluid" alt="{{ project.title }}">
               <div class="portfolio-info">
-                <h4>NativeFlow</h4>
-                <p>Python, Transformers API, Langdetect Library, LLM, time-related operations</p>
-                <a href="{% static 'img/masonry-portfolio/masonry-portfolio-1.jpg' %}" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://github.com/chickenleaf/NativeFlow" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                <h4>{{ project.title }}</h4>
+                <p>{{ project.technologies }}</p>
+                {# Glightbox preview link (assuming masonry-portfolio functionality for zooming) #}
+                {% if project.image %}
+                <a href="{{ project.image.url }}" title="{{ project.title }}" data-gallery="portfolio-gallery-{{ project.category|lower|slugify }}" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                {% endif %}
+                {# Details link (GitHub or Live URL) #}
+                {% if project.github_url %}
+                <a href="{{ project.github_url }}" title="GitHub Repository" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                {% elif project.live_url %}
+                <a href="{{ project.live_url }}" title="Live Demo / More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                {% endif %}
               </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-data">
-              <img src="{% static 'img/masonry-portfolio/titanic.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>TitanicProblem</h4>
-                <p>Jupyter Notebook, Python</p>
-                <a href="{% static 'img/masonry-portfolio/masonry-portfolio-2.jpg' %}" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://colab.research.google.com/drive/1j-i6LCf0bp5cOiVVncrq1Sw_9sT5V0ok?usp=sharing" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="{% static 'img/masonry-portfolio/tkinter.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Shop Management System</h4>
-                <p>Python, Tkinter</p>
-                <a href="{% static 'img/masonry-portfolio/masonry-portfolio-4.jpg' %}" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://github.com/chickenleaf/tkinter-project" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="{% static 'img/masonry-portfolio/detective-dribble.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>DetectiveDribble</h4>
-                <p>Python, OpenCV, NumPy</p>
-                <a href="{% static 'img/masonry-portfolio/masonry-portfolio-7.jpg' %}" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://github.com/chickenleaf/DetectiveDribble" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-              <img src="{% static 'img/masonry-portfolio/decorlyn.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>decorlyn</h4>
-                <p>Flutter, Dart, ARCore, Firebase, OpenGL</p>
-                <a href="{% static 'img/masonry-portfolio/masonry-portfolio-7.jpg' %}" title="App 4" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://github.com/chickenleaf/decorlyn" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
-              <img src="{% static 'img/masonry-portfolio/call-pilot.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>CallPilot</h4>
-                <p>Twilio Call Handling with Node.js</p>
-                <a href="{% static 'img/masonry-portfolio/masonry-portfolio-7.jpg' %}" title="App 4" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://github.com/chickenleaf/ivr_project" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
-              <img src="{% static 'img/masonry-portfolio/api.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>ContactCentral</h4>
-                <p>Express.js app for managing contacts via CRM API or MySQL</p>
-                <a href="{% static 'img/masonry-portfolio/masonry-portfolio-7.jpg' %}" title="App 4" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://github.com/chickenleaf/REST-freshsales" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
-              <img src="{% static 'img/masonry-portfolio/DeliDex.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>DeliDex API</h4>
-                <p>RESTful API with CRUD operations for e-commerce.</p>
-                <a href="{% static 'img/masonry-portfolio/masonry-portfolio-7.jpg' %}" title="App 5" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://github.com/chickenleaf/DeliDex" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
-              <img src="{% static 'img/masonry-portfolio/typechad.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>typechad</h4>
-                <p>Django website for checking typing speed</p>
-                <a href="{% static 'img/masonry-portfolio/masonry-portfolio-7.jpg' %}" title="App 6" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://github.com/chickenleaf/typechad" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-web">
-              <img src="{% static 'img/masonry-portfolio/portfolio-website.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Portfolio Website</h4>
-                <p>Portfolio website build using Django</p>
-                <a href="{% static 'img/masonry-portfolio/masonry-portfolio-7.jpg' %}" title="App 7" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                <a href="https://chickenleaf.onrender.com" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div><!-- End Portfolio Item -->
+            </div>{% empty %}
+            <p class="col-12 text-center">No projects found.</p>
+            {% endfor %}
 
           </div><!-- End Portfolio Container -->
 

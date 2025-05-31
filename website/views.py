@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from website.models import Contact  
+from website.models import Contact, Education, WorkExperience, Project, Achievement
 from django.contrib import messages
 from django.http import FileResponse, Http404
 import os
@@ -33,53 +33,41 @@ def contact_view(request):
     # For GET requests, render the contact form
     return render(request, 'landing.html')
 
-
-# def download_resume(request):
-    
-#     file_path = settings.RESUME_FILE_PATH
-#     file_name = 'resume.pdf'
-
-#     if not os.path.exists(file_path):
-#         raise Http404("Resume file not found.")
-    
-#     try:
-#         # Create a FileResponse without Content-Disposition
-#         response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
-        
-#         # Log the download action
-#         ip_address = request.META.get('REMOTE_ADDR')
-#         DownloadLog.objects.create(file_name=file_name, ip_address=ip_address)
-        
-#         return response
-#     except Exception:
-#         raise Http404("Error accessing the resume file.")
-
 def download_resume(request):
     file_path = settings.RESUME_FILE_PATH
     file_name = 'resume.pdf'
 
     if not os.path.exists(file_path):
         raise Http404("Resume file not found.")
-    
+
     try:
         # Create a FileResponse
         response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
-        
+
         # Log the download action using X-Forwarded-For header
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
             ip_address = x_forwarded_for.split(',')[0]
         else:
             ip_address = request.META.get('REMOTE_ADDR')
-        
+
         DownloadLog.objects.create(file_name=file_name, ip_address=ip_address)
-        
+
         return response
     except Exception:
         raise Http404("Error accessing the resume file.")
 
-
-
-
 def landing(request):
-    return render(request, 'landing.html')
+
+    education_entries = Education.objects.all().order_by('order') # Assuming 'order' field in Education model
+    work_experiences = WorkExperience.objects.all().order_by('-start_date', 'order') # Order by most recent start date, then custom order
+    projects = Project.objects.all().order_by('order') # Assuming 'order' field in Project model
+    achievements = Achievement.objects.all().order_by('order')
+
+    context = {
+        'education_entries': education_entries,
+        'work_experiences': work_experiences,
+        'projects': projects,
+        'achievements': achievements,
+    }
+    return render(request, 'landing.html', context)
